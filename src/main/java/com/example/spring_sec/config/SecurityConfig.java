@@ -29,17 +29,17 @@ public class SecurityConfig {
         DaoAuthenticationProvider provider =
                 new DaoAuthenticationProvider(userDetailsService); // 👈 REQUIRED constructor
 
-        provider.setPasswordEncoder(passwordEncoder);
+        provider.setPasswordEncoder(new BCryptPasswordEncoder(12));
         return provider;
     }
 
-    // ⚠️ DEV ONLY (use BCrypt in real apps)
+    //  DEV ONLY (use BCrypt in real apps)
     @Bean
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
     }
 
-    // ✅ Security rules
+    //  Security rules
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
