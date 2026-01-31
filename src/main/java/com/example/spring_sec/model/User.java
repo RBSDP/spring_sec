@@ -1,9 +1,7 @@
 package com.example.spring_sec.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +10,7 @@ import org.springframework.stereotype.Component;
 @Table(name = "users")
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String username;
     private String password;
