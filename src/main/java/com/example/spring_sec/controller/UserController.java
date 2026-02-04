@@ -1,6 +1,7 @@
 package com.example.spring_sec.controller;
 
 import com.example.spring_sec.model.User;
+import com.example.spring_sec.service.JwtService;
 import com.example.spring_sec.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
@@ -18,6 +19,9 @@ public class UserController {
     private UserService userService;
     @Autowired
     AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JwtService jwtService;
 
     @PostMapping("/register")
     public String addUser(@RequestBody User user){

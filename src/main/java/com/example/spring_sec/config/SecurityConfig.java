@@ -28,6 +28,8 @@ public class SecurityConfig {
     @Autowired
     private MyUserDetailsService myUserDetailsService;
     // AuthenticationProvider (Spring Security 6 style)
+    @Autowired
+    private JwtFilter jwtFilter;
     @Bean
     public AuthenticationProvider authenticationProvider(
             UserDetailsService myUserDetailsService,
@@ -57,7 +59,7 @@ public class SecurityConfig {
                 )
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                );
+                ).addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
